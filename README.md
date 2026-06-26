@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROTISSERIE — Restaurant Operations Dashboard</title>
+    <title>ROTISSERIE — Operational Dashboard</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
@@ -42,59 +44,9 @@
             color: var(--text-main);
             display: flex;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* --- LOGIN SCREEN OVERLAY --- */
-        #login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: var(--bg-warm);
-            display: flex;
-            z-index: 9999;
-            transition: var(--transition);
-        }
-        .login-hero {
-            flex: 1;
-            background: linear-gradient(rgba(158, 42, 43, 0.4), rgba(43, 37, 35, 0.85)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 4rem;
-            color: white;
-        }
-        .login-hero h1 {
-            font-family: var(--font-heading);
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-        .login-form-container {
-            width: 480px;
-            background: var(--surface);
-            padding: 4rem 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-left: 1px solid var(--border-light);
-        }
-        .login-brand {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        .login-subtitle {
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            font-size: 0.95rem;
-        }
-
-        /* --- SIDEBAR NAVIGATION --- */
+        /* --- SIDEBAR --- */
         aside {
             width: 260px;
             background: var(--surface);
@@ -113,9 +65,9 @@
         }
         .sidebar-brand {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--primary);
-            font-weight: 600;
+            font-weight: 700;
         }
         .sidebar-location {
             font-size: 0.75rem;
@@ -133,7 +85,6 @@
             gap: 12px;
             padding: 0.85rem 1rem;
             color: var(--text-muted);
-            text-decoration: none;
             font-weight: 500;
             border-radius: var(--radius);
             cursor: pointer;
@@ -144,18 +95,8 @@
             background-color: var(--accent-light);
             color: var(--primary);
         }
-        .nav-item i {
-            width: 18px;
-            height: 18px;
-        }
-        .sidebar-footer {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border-light);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
 
-        /* --- MAIN LAYOUT CONTEXT --- */
+        /* --- MAIN CONTENT --- */
         main {
             margin-left: 260px;
             flex: 1;
@@ -163,9 +104,6 @@
             max-width: 1400px;
         }
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 2.5rem;
         }
         h2.page-title {
@@ -174,34 +112,19 @@
             color: var(--text-main);
         }
 
-        /* --- UTILITIES & UI COMPONENTS --- */
-        .btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.25rem;
-            font-family: var(--font-ui);
-            font-weight: 600;
-            border-radius: var(--radius);
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--transition);
-        }
-        .btn:hover {
-            background-color: var(--primary-hover);
-        }
-        .btn-secondary {
-            background-color: transparent;
+        /* --- FORMS & INPUTS --- */
+        .entry-box {
+            background: var(--surface);
             border: 1px solid var(--border-light);
-            color: var(--text-main);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            height: fit-content;
         }
-        .btn-secondary:hover {
-            background-color: var(--bg-warm);
+        .entry-box h3 {
+            font-family: var(--font-heading);
+            margin-bottom: 1.25rem;
+            color: var(--primary);
         }
-
-        /* Input Controls */
         .form-group {
             margin-bottom: 1.25rem;
         }
@@ -216,21 +139,50 @@
             width: 100%;
             padding: 0.75rem 1rem;
             font-family: var(--font-ui);
+            font-size: 0.9rem;
             border: 1px solid var(--border-light);
             border-radius: var(--radius);
             outline: none;
             background-color: var(--bg-warm);
-            transition: var(--transition);
         }
         .form-control:focus {
             border-color: var(--accent);
             background-color: var(--surface);
         }
 
-        /* Stat Grid Cards */
+        /* --- BUTTONS --- */
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.85rem 1.25rem;
+            font-family: var(--font-ui);
+            font-weight: 600;
+            border-radius: var(--radius);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            transition: var(--transition);
+        }
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* --- LAYOUT SPLIT --- */
+        .data-split {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        /* --- STAT CARDS --- */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2.5rem;
         }
@@ -239,43 +191,31 @@
             border: 1px solid var(--border-light);
             border-radius: var(--radius);
             padding: 1.5rem;
-            position: relative;
         }
         .stat-label {
             font-size: 0.85rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
+            font-weight: 600;
         }
         .stat-value {
             font-family: var(--font-heading);
-            font-size: 1.85rem;
-            font-weight: 600;
+            font-size: 2rem;
             color: var(--text-main);
         }
-        .stat-footer {
-            margin-top: 0.75rem;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
 
-        /* Data Tables */
+        /* --- TABLES --- */
         .table-container {
             background: var(--surface);
             border: 1px solid var(--border-light);
             border-radius: var(--radius);
             overflow: hidden;
-            margin-bottom: 2.5rem;
         }
         .table-header {
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
             border-bottom: 1px solid var(--border-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: #FFF;
         }
         table {
             width: 100%;
@@ -286,8 +226,8 @@
         th {
             background-color: var(--bg-warm);
             padding: 1rem 1.5rem;
-            font-weight: 600;
             color: var(--text-muted);
+            font-weight: 600;
             border-bottom: 1px solid var(--border-light);
         }
         td {
@@ -295,218 +235,149 @@
             border-bottom: 1px solid var(--border-light);
             color: var(--text-main);
         }
-        tr:last-child td {
-            border-bottom: none;
+        tr:hover td {
+            background-color: var(--bg-warm);
         }
 
-        /* Status Pills */
+        /* --- PILLS --- */
         .pill {
             display: inline-flex;
-            align-items: center;
             padding: 0.25rem 0.75rem;
             border-radius: 50px;
             font-size: 0.75rem;
             font-weight: 600;
         }
-        .pill-serving { background-color: var(--warning-light); color: var(--warning); }
-        .pill-served { background-color: var(--accent-light); color: var(--accent); }
-        .pill-paid { background-color: var(--success-light); color: var(--success); }
+        .pill-active { background-color: var(--success-light); color: var(--success); }
+        .pill-pending { background-color: var(--warning-light); color: var(--warning); }
 
-        /* App Sections Views Visibility toggle */
-        .app-view {
-            display: none;
-        }
-        .app-view.active-view {
-            display: block;
-        }
-
-        /* Two Column Layout Split */
-        .dashboard-split {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
-        }
-
-        /* Chart Visual Placeholder Components */
-        .chart-placeholder {
-            background: linear-gradient(180deg, var(--bg-warm) 0%, #FFFFFF 100%);
-            border: 1px dashed var(--border-light);
-            border-radius: var(--radius);
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
+        /* --- VIEW CONTROLLER --- */
+        .app-view { display: none; }
+        .app-view.active-view { display: block; }
     </style>
 </head>
 <body>
 
-    <div id="login-overlay">
-        <div class="login-hero">
-            <h1>ROTISSERIE</h1>
-            <p>College Tiniali, Golaghat, Assam 785621</p>
-        </div>
-        <div class="login-form-container">
-            <div class="login-brand">ROTISSERIE Engine</div>
-            <div class="login-subtitle">Secure Custom JWT Operational Access</div>
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label>Operational Role / User ID</label>
-                    <input type="text" class="form-control" placeholder="e.g., admin_golaghat" required value="admin_golaghat">
-                </div>
-                <div class="form-group">
-                    <label>Secret Passkey</label>
-                    <input type="password" class="form-control" placeholder="••••••••" required value="password123">
-                </div>
-                <button type="submit" class="btn" style="width: 100%; justify-content: center; margin-top: 1rem;">
-                    Sign In & Verify JWT <i data-lucide="shield-check"></i>
-                </button>
-            </form>
-        </div>
-    </div>
-
+    <!-- --- SIDEBAR NAVIGATION --- -->
     <aside>
         <div class="sidebar-header">
             <div class="sidebar-brand">ROTISSERIE</div>
-            <div class="sidebar-location">Golaghat, Assam (ID: 785621)</div>
+            <div class="sidebar-location">College Tiniali, Golaghat</div>
         </div>
         <ul class="nav-list">
             <li class="nav-item active" onclick="switchView('dashboard', this)"><i data-lucide="layout-dashboard"></i>Dashboard</li>
-            <li class="nav-item" onclick="switchView('orders', this)"><i data-lucide="utensils-crossedd"></i>Active Orders</li>
-            <li class="nav-item" onclick="switchView('inventory', this)"><i data-lucide="boxes"></i>Inventory Assets</li>
+            <li class="nav-item" onclick="switchView('orders', this)"><i data-lucide="utensils-crossedd"></i>Daily Orders</li>
+            <li class="nav-item" onclick="switchView('inventory', this)"><i data-lucide="boxes"></i>Stock Inventory</li>
             <li class="nav-item" onclick="switchView('staff', this)"><i data-lucide="users"></i>Staff Registry</li>
-            <li class="nav-item" onclick="switchView('customers', this)"><i data-lucide="heart-handshake"></i>Guests & Ratings</li>
+            <li class="nav-item" onclick="switchView('customers', this)"><i data-lucide="heart-handshake"></i>Guest Ledger</li>
         </ul>
-        <div class="sidebar-footer">
-            <p style="font-weight:600; margin-bottom:4px;">Secure Token Context</p>
-            <p id="jwt-badge" style="font-family: monospace; font-size:11px; word-break: break-all; opacity: 0.7;">No Session</p>
-        </div>
     </aside>
 
+    <!-- --- MAIN CONTAINER --- -->
     <main>
         
+        <!-- MODULE 1: DASHBOARD OVERVIEW -->
         <div id="view-dashboard" class="app-view active-view">
             <header>
-                <div>
-                    <h2 class="page-title">Operational Overview</h2>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Real-time metrics for Golaghat hub</p>
-                </div>
-                <button class="btn" onclick="switchView('orders')"><i data-lucide="plus"></i> New Order Entry</button>
+                <h2 class="page-title">Live Kitchen Pulse</h2>
+                <p style="color: var(--text-muted);">Real-time metrics calculated from entries</p>
             </header>
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-label">Net Daily Profit</div>
-                    <div class="stat-value">₹14,250</div>
-                    <div class="stat-footer" style="color: var(--success);"><i data-lucide="trending-up"></i> +12% from yesterday</div>
+                    <div class="stat-label">Daily Sales / Profit</div>
+                    <div class="stat-value" id="dash-profit">₹430</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Total Liquid Cash</div>
-                    <div class="stat-value">₹32,840</div>
-                    <div class="stat-footer"><i data-lucide="wallet"></i> Drawer balance verified</div>
+                    <div class="stat-label">Total Cash collected</div>
+                    <div class="stat-value" id="dash-cash">₹430</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Avg Service Time</div>
-                    <div class="stat-value">14.2 min</div>
-                    <div class="stat-footer" style="color: var(--success);"><i data-lucide="zap"></i> -2 min optimizations</div>
+                    <div class="stat-label">Total Tips Earned</div>
+                    <div class="stat-value" id="dash-tips">₹50</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Aggregate Rating</div>
-                    <div class="stat-value">4.6 / 5</div>
-                    <div class="stat-footer" style="color: var(--accent);"><i data-lucide="star"></i> 48 guest responses</div>
+                    <div class="stat-label">Avg Serving Time</div>
+                    <div class="stat-value" id="dash-time">15 min</div>
                 </div>
             </div>
 
-            <div class="dashboard-split">
-                <div class="table-container" style="margin-bottom:0;">
-                    <div class="table-header"><h3>Active Kitchen Track</h3></div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Table / Token</th>
-                                <th>Item Ordered</th>
-                                <th>Service Clock</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Table 4A</td>
-                                <td>Quarter Classic Roasted Chicken</td>
-                                <td>8 mins elapsed</td>
-                                <td><span class="pill pill-serving">Serving</span></td>
-                            </tr>
-                            <tr>
-                                <td>Takeaway Token #12</td>
-                                <td>Full Wood-Fired Spiced Platter</td>
-                                <td>16 mins elapsed</td>
-                                <td><span class="pill pill-served">Served</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="table-container" style="margin-bottom:0; padding:1.5rem;">
-                    <h3 style="margin-bottom: 1rem;">Daily Profit Line</h3>
-                    <div class="chart-placeholder">[ Interactive Profit Timeline Area ]</div>
-                </div>
+            <div class="table-container">
+                <div class="table-header"><h3>Active Running Orders Context</h3></div>
+                <table id="dash-orders-table">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Item</th>
+                            <th>Total Cost</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Automatically syncs with Daily Orders -->
+                    </tbody>
+                </table>
             </div>
         </div>
 
+        <!-- MODULE 2: DAILY ORDERS ENTRY -->
         <div id="view-orders" class="app-view">
             <header>
-                <div>
-                    <h2 class="page-title">Order Processing Matrix</h2>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Track kitchen cycles, ticket windows, and guest payout settlements</p>
-                </div>
+                <h2 class="page-title">Order Entry Register</h2>
+                <p style="color: var(--text-muted);">Log chicken roasts, track service speed, and calculate cash drawers.</p>
             </header>
-
-            <div class="dashboard-split" style="grid-template-columns: 1fr 2fr;">
-                <div class="table-container" style="padding: 1.5rem; background: #FFFFFF; height: fit-content;">
-                    <h3 style="margin-bottom:1.25rem; font-family: var(--font-heading);">Generate Live Ticket</h3>
-                    <form onsubmit="addMockOrder(event)">
-                        <div class="form-group">
-                            <label>Menu Variant Selection</label>
-                            <select class="form-control" id="order-item">
-                                <option value="Classic Half Roasted Chicken">Classic Half Roasted Chicken — ₹240</option>
-                                <option value="Spiced Quarter Breast">Spiced Quarter Breast — ₹140</option>
-                                <option value="Full Banquet Platter">Full Banquet Platter — ₹450</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Service Channel / Table Mark</label>
-                            <input type="text" class="form-control" id="order-table" placeholder="e.g., Table 3, Quick Counter" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Voluntary Customer Gratuity (Tips - ₹)</label>
-                            <input type="number" class="form-control" id="order-tips" placeholder="0" value="20">
-                        </div>
-                        <button type="submit" class="btn" style="width:100%; justify-content:center;">Commit Ticket to Matrix</button>
-                    </form>
+            
+            <div class="data-split">
+                <div class="entry-box">
+                    <h3>New Order Ticket</h3>
+                    <div class="form-group">
+                        <label>Menu Selection</label>
+                        <select class="form-control" id="ord-item">
+                            <option value="Classic Half Roasted Chicken|240">Classic Half Roasted Chicken — ₹240</option>
+                            <option value="Spiced Quarter Breast|140">Spiced Quarter Breast — ₹140</option>
+                            <option value="Full Wood-Fired Banquet|450">Full Wood-Fired Banquet — ₹450</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Table No. / Channel</label>
+                        <input type="text" class="form-control" id="ord-table" placeholder="e.g. Table 3">
+                    </div>
+                    <div class="form-group">
+                        <label>Prep + Serving Time (Minutes)</label>
+                        <input type="number" class="form-control" id="ord-time" placeholder="e.g. 15" value="15">
+                    </div>
+                    <div class="form-group">
+                        <label>Tips Gratuity (₹)</label>
+                        <input type="number" class="form-control" id="ord-tips" placeholder="0" value="20">
+                    </div>
+                    <button class="btn" type="button" onclick="submitOrder()">Save Order Ticket</button>
                 </div>
 
                 <div class="table-container">
-                    <div class="table-header"><h3>Active Floor Register</h3></div>
-                    <table id="orders-table">
+                    <div class="table-header"><h3>Daily Transaction Logs</h3></div>
+                    <table id="main-orders-list">
                         <thead>
                             <tr>
-                                <th>Order Ref</th>
-                                <th>Target Location</th>
-                                <th>Menu Item</th>
-                                <th>Total Bill</th>
-                                <th>Tips Handover</th>
-                                <th>Current Status</th>
+                                <th>Location</th>
+                                <th>Item</th>
+                                <th>Bill Price</th>
+                                <th>Time Taken</th>
+                                <th>Tips</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>#ROT-9821</td>
                                 <td>Table 2</td>
                                 <td>Classic Half Roasted Chicken</td>
                                 <td>₹240</td>
+                                <td>15 mins</td>
                                 <td>₹30</td>
-                                <td><span class="pill pill-paid">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>Quick Counter</td>
+                                <td>Spiced Quarter Breast</td>
+                                <td>₹140</td>
+                                <td>12 mins</td>
+                                <td>₹20</td>
                             </tr>
                         </tbody>
                     </table>
@@ -514,181 +385,299 @@
             </div>
         </div>
 
+        <!-- MODULE 3: INVENTORY ENTRY -->
         <div id="view-inventory" class="app-view">
             <header>
-                <div>
-                    <h2 class="page-title">Stock &amp; Raw Assets</h2>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Warehouse quantities and critical low-stock alert infrastructure</p>
-                </div>
+                <h2 class="page-title">Inventory & Stock Tracking</h2>
+                <p style="color: var(--text-muted);">Add new supplies and keep raw items updated.</p>
             </header>
-            <div class="table-container">
-                <div class="table-header"><h3>Central Kitchen Stock Ledger</h3></div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ingredient Component</th>
-                            <th>Storage Class</th>
-                            <th>In-Store Baseline Vol</th>
-                            <th>Safety Index Metric</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Fresh Broiler Chicken Hub Units</td>
-                            <td>Refrigerated Storage Alpha</td>
-                            <td>42 Kgs</td>
-                            <td><span class="pill pill-paid">Optimal</span></td>
-                        </tr>
-                        <tr>
-                            <td>Assam Organic Firewood Packs</td>
-                            <td>Dry Storage Yard</td>
-                            <td>8 Bundles</td>
-                            <td><span class="pill pill-serving">Low Stock Alert</span></td>
-                        </tr>
-                        <tr>
-                            <td>House Secret Marinade Compound</td>
-                            <td>Cold Vault Beta</td>
-                            <td>15 Liters</td>
-                            <td><span class="pill pill-paid">Optimal</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <div class="data-split">
+                <div class="entry-box">
+                    <h3>Add Stock Item</h3>
+                    <div class="form-group">
+                        <label>Ingredient / Supply Item Name</label>
+                        <input type="text" class="form-control" id="inv-name" placeholder="e.g. Fresh Broiler Chicken">
+                    </div>
+                    <div class="form-group">
+                        <label>Current Stock Quantity</label>
+                        <input type="text" class="form-control" id="inv-qty" placeholder="e.g. 50 Kgs">
+                    </div>
+                    <div class="form-group">
+                        <label>Storage Room / Location</label>
+                        <input type="text" class="form-control" id="inv-loc" placeholder="e.g. Deep Freezer 1">
+                    </div>
+                    <button class="btn" type="button" onclick="submitInventory()">Log Inventory Item</button>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header"><h3>Current Kitchen Stock Levels</h3></div>
+                    <table id="main-inventory-list">
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Available Stock</th>
+                                <th>Storage Location</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Fresh Whole Chickens</td>
+                                <td>42 Kgs</td>
+                                <td>Deep Freezer A</td>
+                            </tr>
+                            <tr>
+                                <td>Assam Wood Fire Logs</td>
+                                <td>12 Bundles</td>
+                                <td>Dry Backyard Depot</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
+        <!-- MODULE 4: STAFF REGISTRY -->
         <div id="view-staff" class="app-view">
             <header>
-                <div>
-                    <h2 class="page-title">Staff Workspace Configuration</h2>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Configure user account system permissions, shifts, and operations tasks</p>
-                </div>
+                <h2 class="page-title">Staff Registry & Shifts</h2>
+                <p style="color: var(--text-muted);">Manage workforce roles and team duty tracking.</p>
             </header>
-            <div class="table-container">
-                <div class="table-header"><h3>Active Workforce Registry</h3></div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Staff Member Name</th>
-                            <th>Assigned Operations Duty Role</th>
-                            <th>Active Shift Allocation</th>
-                            <th>System Auth Token Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Jitendra Gogoi</td>
-                            <td>Head Kitchen Master Roaster</td>
-                            <td>Day Prep Core (08:00 - 16:00)</td>
-                            <td><span class="pill pill-paid">Verified JWT Admin</span></td>
-                        </tr>
-                        <tr>
-                            <td>Prashant Saikia</td>
-                            <td>Floor Lead &amp; Cashier Steward</td>
-                            <td>Evening Rush Core (15:00 - 23:00)</td>
-                            <td><span class="pill pill-served">Staff Level Access</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <div class="data-split">
+                <div class="entry-box">
+                    <h3>Add New Staff Member</h3>
+                    <div class="form-group">
+                        <label>Employee Name</label>
+                        <input type="text" class="form-control" id="staff-name" placeholder="Full name">
+                    </div>
+                    <div class="form-group">
+                        <label>Assigned Work Role</label>
+                        <select class="form-control" id="staff-role">
+                            <option value="Head Pitmaster Roaster">Head Pitmaster Roaster</option>
+                            <option value="Line Cook / Prep Master">Line Cook / Prep Master</option>
+                            <option value="Floor Steward / Waiter">Floor Steward / Waiter</option>
+                            <option value="Cashier & Accountant">Cashier & Accountant</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Shift Timing Details</label>
+                        <input type="text" class="form-control" id="staff-shift" placeholder="e.g. Morning (8 AM - 4 PM)">
+                    </div>
+                    <button class="btn" type="button" onclick="submitStaff()">Register Employee</button>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header"><h3>Active Restaurant Team</h3></div>
+                    <table id="main-staff-list">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Role</th>
+                                <th>Assigned Shift</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Jitendra Gogoi</td>
+                                <td>Head Pitmaster Roaster</td>
+                                <td>All-Day (11 AM - 10 PM)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
+        <!-- MODULE 5: GUEST LEDGER & RATINGS -->
         <div id="view-customers" class="app-view">
             <header>
-                <div>
-                    <h2 class="page-title">Customer Feedback Ledger</h2>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Aggregate reviews, average platform ratings, and historical loyalty tracks</p>
-                </div>
+                <h2 class="page-title">Guest Ledger & Ratings</h2>
+                <p style="color: var(--text-muted);">Keep details of regular customers and feedback.</p>
             </header>
-            <div class="table-container">
-                <div class="table-header"><h3>Recent Customer Accounts</h3></div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Guest Identifier</th>
-                            <th>Frequency Track</th>
-                            <th>Assigned Rating Record</th>
-                            <th>Steward Commentary Context</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Ananya B. (Counter Guest)</td>
-                            <td>Frequent Core Regular</td>
-                            <td>⭐⭐⭐⭐⭐ 5.0</td>
-                            <td>Expressed high preference for the wood-fired spice glaze mix.</td>
-                        </tr>
-                        <tr>
-                            <td>Rituraj D. (Table 5)</td>
-                            <td>First-time Diner Visit</td>
-                            <td>⭐⭐⭐⭐ 4.0</td>
-                            <td>Noted table service time during peak rush hour was satisfactory.</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <div class="data-split">
+                <div class="entry-box">
+                    <h3>Log Guest Feedback</h3>
+                    <div class="form-group">
+                        <label>Customer Name / Table Identifier</label>
+                        <input type="text" class="form-control" id="cust-name" placeholder="Guest Name or Phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Star Rating Given</label>
+                        <select class="form-control" id="cust-rating">
+                            <option value="⭐⭐⭐⭐⭐ 5.0 Stars">⭐⭐⭐⭐⭐ 5.0 Stars</option>
+                            <option value="⭐⭐⭐⭐ 4.0 Stars">⭐⭐⭐⭐ 4.0 Stars</option>
+                            <option value="⭐⭐⭐ 3.0 Stars">⭐⭐⭐ 3.0 Stars</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes / Preferences</label>
+                        <input type="text" class="form-control" id="cust-note" placeholder="e.g. Prefers extra spicy glaze sauce">
+                    </div>
+                    <button class="btn" type="button" onclick="submitCustomer()">Save Guest Feedback</button>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header"><h3>Guest Profile & Review Archive</h3></div>
+                    <table id="main-customer-list">
+                        <thead>
+                            <tr>
+                                <th>Guest Identity</th>
+                                <th>Rating Score</th>
+                                <th>Kitchen Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ananya B.</td>
+                                <td>⭐⭐⭐⭐⭐ 5.0 Stars</td>
+                                <td>Regular counter order. Prefers extra spice glaze.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
     </main>
 
+    <!-- --- DATA HANDLING LOGIC --- -->
     <script>
-        // Simulate execution of standard payload encryption signature validation pattern
-        window.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
+        // Initialize dynamic icons
+        window.addEventListener('DOMContentLoaded', () => { 
+            lucide.createIcons(); 
+            recalculateDashboardTotals();
         });
 
-        function handleLogin(event) {
-            event.preventDefault();
-            // Generate standard cryptographic UI visual placeholder to match JWT request simulation parameters
-            const sampleJWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUm90aXNzZXJpZSBG&b29kIiwicm9sZSI6ImFkbWluIiwiZXhwIjoyNTM0MDIzMDAwMDB9.s7X_bW9";
-            document.getElementById('jwt-badge').innerText = sampleJWT;
-            
-            // Smoothly remove overlay panel interface mask context component from dynamic viewport view DOM hierarchy
-            const overlay = document.getElementById('login-overlay');
-            overlay.style.opacity = '0';
-            setTimeout(() => { overlay.style.display = 'none'; }, 200);
-        }
+        // Simple view switcher
+        function switchView(viewId, clickedElement) {
+            document.querySelectorAll('.app-view').forEach(view => view.classList.remove('active-view'));
+            document.getElementById('view-' + viewId).classList.add('active-view');
 
-        function switchView(viewId, element) {
-            // Hide all active visibility canvas zones completely using target selector loops
-            const views = document.querySelectorAll('.app-view');
-            views.forEach(view => view.classList.remove('active-view'));
-            
-            // Re-activate specific targeted operational view sector safely inside layout document DOM tree context
-            const targetedView = document.getElementById('view-' + viewId);
-            if(targetedView) {
-                targetedView.classList.add('active-view');
-            }
-
-            // Clean existing primary navigational component highlight states from DOM element styles
-            if(element) {
-                const items = document.querySelectorAll('.nav-item');
-                items.forEach(item => item.classList.remove('active'));
-                element.classList.add('active');
+            if(clickedElement) {
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                clickedElement.classList.add('active');
             }
         }
 
-        function addMockOrder(event) {
-            event.preventDefault();
-            const itemElement = document.getElementById('order-item');
-            const itemText = itemElement.options[itemElement.selectedIndex].text.split(' — ')[0];
-            const priceText = itemElement.options[itemElement.selectedIndex].text.split(' — ')[1];
-            const tableMark = document.getElementById('order-table').value;
-            const tipsAmount = document.getElementById('order-tips').value;
+        // Calculations & Table Sync Logic
+        function recalculateDashboardTotals() {
+            let totalCash = 0;
+            let totalTips = 0;
+            let combinedMinutes = 0;
+            let orderRows = document.querySelectorAll('#main-orders-list tbody tr');
+            
+            let dashTableBody = document.querySelector('#dash-orders-table tbody');
+            dashTableBody.innerHTML = ''; // Reset overview context
 
-            const tableRef = document.getElementById('orders-table').getElementsByTagName('tbody')[0];
-            const newRow = tableRef.insertRow(0);
+            orderRows.forEach(row => {
+                let cells = row.getElementsByTagName('td');
+                let loc = cells[0].innerText;
+                let item = cells[1].innerText;
+                let price = parseInt(cells[2].innerText.replace('₹', '')) || 0;
+                let time = parseInt(cells[3].innerText.replace(' mins', '')) || 0;
+                let tips = parseInt(cells[4].innerText.replace('₹', '')) || 0;
+
+                totalCash += price;
+                totalTips += tips;
+                combinedMinutes += time;
+
+                // Mirror to core dashboard display
+                let quickRow = dashTableBody.insertRow();
+                quickRow.innerHTML = `<td><b>${loc}</b></td><td>${item}</td><td>₹${price}</td><td><span class="pill pill-active">Served</span></td>`;
+            });
+
+            let avgTime = orderRows.length > 0 ? Math.round(combinedMinutes / orderRows.length) : 0;
+
+            // Update UI elements
+            document.getElementById('dash-profit').innerText = '₹' + totalCash;
+            document.getElementById('dash-cash').innerText = '₹' + (totalCash + totalTips);
+            document.getElementById('dash-tips').innerText = '₹' + totalTips;
+            document.getElementById('dash-time').innerText = avgTime + ' min';
+        }
+
+        // Form 1: Add New Order
+        function submitOrder() {
+            const dropdown = document.getElementById('ord-item');
+            const itemValue = dropdown.value.split('|');
+            const itemName = itemValue[0];
+            const itemPrice = itemValue[1];
+            
+            const tableNo = document.getElementById('ord-table').value.trim();
+            const serviceTime = document.getElementById('ord-time').value.trim();
+            const tipsAmount = document.getElementById('ord-tips').value.trim();
+
+            if (!tableNo) { alert('Please enter a Table No. or Channel name.'); return; }
+
+            const tableRef = document.getElementById('main-orders-list').getElementsByTagName('tbody')[0];
+            const newRow = tableRef.insertRow(0); // Insert at top
 
             newRow.innerHTML = `
-                <td>#ROT-${Math.floor(1000 + Math.random() * 9000)}</td>
-                <td>${tableMark}</td>
-                <td>${itemText}</td>
-                <td>${priceText}</td>
+                <td>${tableNo}</td>
+                <td>${itemName}</td>
+                <td>₹${itemPrice}</td>
+                <td>${serviceTime} mins</td>
                 <td>₹${tipsAmount || 0}</td>
-                <td><span class="pill pill-serving">Serving</span></td>
             `;
+
+            // Reset Input Values safely
+            document.getElementById('ord-table').value = '';
             
-            // Clear inputs for next operation cycle execution step pattern
-            document.getElementById('order-table').value = '';
+            recalculateDashboardTotals();
+            alert('Order Ticket logged successfully!');
+        }
+
+        // Form 2: Add Inventory Asset
+        function submitInventory() {
+            const name = document.getElementById('inv-name').value.trim();
+            const qty = document.getElementById('inv-qty').value.trim();
+            const loc = document.getElementById('inv-loc').value.trim();
+
+            if (!name || !qty) { alert('Please fill out the item name and quantity.'); return; }
+
+            const tableRef = document.getElementById('main-inventory-list').getElementsByTagName('tbody')[0];
+            const newRow = tableRef.insertRow(0);
+            newRow.innerHTML = `<td><b>${name}</b></td><td>${qty}</td><td>${loc || 'Main Depot'}</td>`;
+
+            document.getElementById('inv-name').value = '';
+            document.getElementById('inv-qty').value = '';
+            document.getElementById('inv-loc').value = '';
+            alert('Inventory stock row added!');
+        }
+
+        // Form 3: Register Staff
+        function submitStaff() {
+            const name = document.getElementById('staff-name').value.trim();
+            const role = document.getElementById('staff-role').value;
+            const shift = document.getElementById('staff-shift').value.trim();
+
+            if (!name || !shift) { alert('Please complete Name and Shift timings.'); return; }
+
+            const tableRef = document.getElementById('main-staff-list').getElementsByTagName('tbody')[0];
+            const newRow = tableRef.insertRow(0);
+            newRow.innerHTML = `<td><b>${name}</b></td><td>${role}</td><td>${shift}</td>`;
+
+            document.getElementById('staff-name').value = '';
+            document.getElementById('staff-shift').value = '';
+            alert('Staff member registered!');
+        }
+
+        // Form 4: Log Customer Feedback
+        function submitCustomer() {
+            const name = document.getElementById('cust-name').value.trim();
+            const rating = document.getElementById('cust-rating').value;
+            const note = document.getElementById('cust-note').value.trim();
+
+            if (!name) { alert('Please identify the guest or target table.'); return; }
+
+            const tableRef = document.getElementById('main-customer-list').getElementsByTagName('tbody')[0];
+            const newRow = tableRef.insertRow(0);
+            newRow.innerHTML = `<td><b>${name}</b></td><td>${rating}</td><td>${note || 'None'}</td>`;
+
+            document.getElementById('cust-name').value = '';
+            document.getElementById('cust-note').value = '';
+            alert('Customer review file saved!');
         }
     </script>
 </body>
